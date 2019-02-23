@@ -28,5 +28,11 @@ while ($isinya = pg_fetch_assoc($result)) {
 }
 echo json_encode($hasil);
 
-    }
+	}
+	
+
+	public function umkmgeom($id)
+	{
+		echo "Test";
+	}
 }

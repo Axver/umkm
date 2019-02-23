@@ -21,6 +21,10 @@ class Insertumkm extends CI_Controller
         id_umkm, id_jenis, nama_umkm, latutude, longitude, nama_pemilik)
         VALUES ($id, $id_jenis, '$nama_umkm', '$latitude', '$longitude', '$nama_pemilik')");
     //  Cek Id Terakhir
+
+    
+    redirect('http://localhost/project1/','refresh');
+    
      
     
     // echo json_encode($result);

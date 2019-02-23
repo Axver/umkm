@@ -72,5 +72,12 @@ class Login_model extends CI_Model
         return $query_result;
     }
 
+    public function getjenisumkm()
+    {
+        $data = $this->db->query("SELECT * FROM jenis_umkm");
+        $query_result = $data->result_array();
+        return $query_result;
+    }
+
 
 }

@@ -38,14 +38,27 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Tampil berdasarkan List:</h6>
-            <a class="collapse-item" href="buttons.html" data-toggle="modal" data-target="#exampleModal">Kuliner</a>
-            <a class="collapse-item" href="cards.html">Fashion</a>
-            <a class="collapse-item" href="cards.html">Pendidikan</a>
-            <a class="collapse-item" href="cards.html">Otomotif</a>
-            <a class="collapse-item" href="cards.html">Agrobisnis</a>
-            <a class="collapse-item" href="cards.html">Teknologi Internet</a>
-            <a class="collapse-item" href="cards.html">Kerajinan Tangan</a>
-            <a class="collapse-item" href="cards.html">Elektronik dan Gadget</a>
+            <!-- <a class="collapse-item" href="buttons.html" data-toggle="modal" data-target="#exampleModal">Kuliner</a> -->
+            <?php foreach ($jenis_umkm as $jenis) {?>
+              <a class="collapse-item" href="#" onclick='tampil_umkm(<?php echo $jenis['id_jenis']; ?>)'><?php echo $jenis['nama_jenis'] ?></a>
+            <?php } ?>
+            
+            <script>
+             function tampil_umkm(id)
+             {
+               alert(id);
+                        $.ajax({
+                            type: 'GET',
+                            url: 'http://localhost/project1/index.php/geomkab/umkmgeom/' + id,
+                            success: function (html) {
+                                  alert(html);
+                                
+                            }
+                        });
+                   
+             }
+            </script>
+           
             
           </div>
         </div>
