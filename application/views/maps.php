@@ -33,7 +33,7 @@
                 opacity: 0.1,
                 color: 'yellow',
                 dashArray: '3',
-                fillOpacity: 0.3,
+                fillOpacity: 0.5,
                 fillColor: 'blue'
     }
 
@@ -44,7 +44,7 @@
     id: 'mapbox.streets',
     accessToken: 'pk.eyJ1IjoiYXh2ZXI3IiwiYSI6ImNqOXNxdHF4bjBzb2czM2p6cmVzZzBwcXgifQ.l38Ez-rF1XCin25iUIynoQ'
 }).addTo(mymap);
-// layer=L.control.layers().addTo(mymap);
+
 
 var drawnItems = new L.FeatureGroup();
      mymap.addLayer(drawnItems);
@@ -55,27 +55,29 @@ var drawnItems = new L.FeatureGroup();
      });
      mymap.addControl(drawControl);
 
-//  mymap.on('draw:created', function (e) {
-    // Do whatever else you need to. (save to db, add to map etc)
-    // map.addLayer(layer);
-    // console.log("Test");
-// });
-
-
-
 
 mymap.on('draw:created', function (e) {
 
     var type = e.layerType,
         layer = e.layer;
 
-    if (type === 'rectangle') {
-        layer.on('mouseover', function() {
-            // alert(layer.getLatLngs());    
-        });
-    }
+       if (type === 'marker') {
+           alert('Klik Dipeta Sekali Lagi');
+            mymap.on('click', function(e) {
+                var lat = e.latlng.lat;
+                var lng = e.latlng.lng;
+                alert ("Latitude : " + lat + "\nLongitude : " + lng);
+                lat=document.getElementById('lat').value=lat;
+                lon=document.getElementById('lon').value=lng;
+        }),
 
-    drawnItems.addLayer(layer);
+            layer.bindPopup(
+            'e.latlng.lat');
+        }
+
+        drawnItems.addLayer(layer);
+
+    // drawnItems.addLayer(layer);
 });
 
 

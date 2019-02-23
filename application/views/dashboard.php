@@ -1,7 +1,7 @@
 <?php
 if (!isset($this->session->userdata['logged_in'])) {
     header("location: http://localhost/project1/");
-    }
+}
 ?>
 
 
@@ -19,16 +19,16 @@ if (!isset($this->session->userdata['logged_in'])) {
     <title>HelioMetris</title>
 
     <!-- Custom fonts for this template-->
-    <link href="<?php echo base_url('/bootstrap/vendor/fontawesome-free/css/all.min.css')?>" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url('/bootstrap/vendor/fontawesome-free/css/all.min.css') ?>" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="<?php echo base_url('/bootstrap/css/sb-admin-2.min.css');?>" rel="stylesheet">
+    <link href="<?php echo base_url('/bootstrap/css/sb-admin-2.min.css'); ?>" rel="stylesheet">
 
 
-     <style>
-      /* Always set the map height explicitly to define the size of the div
+    <style>
+        /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
         height: 100%;
@@ -52,8 +52,10 @@ if (!isset($this->session->userdata['logged_in'])) {
 
         <!-- Left Navigation -->
         <?php echo $left_nav;
-        // var_dump($laptop);
-        ?>
+echo $modal_umkm;
+echo $modal_insert;
+// var_dump($laptop);
+ ?>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -63,29 +65,95 @@ if (!isset($this->session->userdata['logged_in'])) {
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                <button class='btn btn-danger' onclick="window.location='<?php echo site_url("login/logout");?>'">Logout</button>
-
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-
+                    <button class='btn btn-danger' onclick="window.location='<?php echo site_url(" login/logout"); ?>'">Logout
+                        </button> <!-- Sidebar Toggle (Topbar) -->
+                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                            <i class="fa fa-bars"></i>
+                        </button>
 
 
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Topbar Navbar -->
+                        <ul class="navbar-nav ml-auto">
 
 
-                        <div class="topbar-divider d-none d-sm-block"></div>
+                            <div class="topbar-divider d-none d-sm-block"></div>
 
-                    </ul>
+                        </ul>
 
                 </nav>
                 <!-- End of Topbar -->
 
                 <?php echo $map; ?>
                 <div class='row'>
-                   
+                    <div class='col-sm-6'>
+                        <div style='background-color:#4E73DF;color:white;' class='panel panel-info'>
+
+
+                            <div class='panel-head'>
+                                <h3>Input Marker</h3>
+                            </div>
+                            <div style='margin-left:10px;' class='panel-body'>
+                                <form style='margin-left:10px;margin-right:20px;' action='<?php echo base_url('index.php/insertumkm/inputumkm') ?>' method='POST'>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Nama UMKM</label>
+                                        <input name='nama_umkm' type="text" class="form-control" id="exampleInputEmail1"
+                                            aria-describedby="emailHelp" placeholder="Nama UMKM">
+                                        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Nama Pemilik</label>
+                                        <input name='nama_pemilik' type="text" class="form-control" id="exampleInputPassword1" placeholder="Nama Pemilik">
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <label class="input-group-text" for="inputGroupSelect01">Jenis UMKM</label>
+                                        </div>
+                                        <select name='jenis_umkm' class="custom-select" id="inputGroupSelect01">
+                                            <?php
+
+                                         foreach ($jenis_umkm as $ju) {
+                                           ?>
+                                            <option value="<?php echo $ju['id_jenis']?>">
+                                                <?php echo $ju['nama_jenis']; ?>
+                                            </option>
+
+
+                                            <?php }?>
+
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleFormControlFile1">Input Foto</label>
+                                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                    </div>
+                                    <input type="text" name="lat" id="lat" placeholder='Latitude'>
+                                    <input type="text" name="lon" id="lon" placeholder='Longitude'>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                
+
+                    <div class='col-sm-6'>
+
+                        <div class='panel panel-info'>
+
+
+                            <div class='panel-head'>
+                                <h3>Panel Head 1</h3>
+                            </div>
+                            <div class='panel-body'>
+                                Test
+                            </div>
+
+
+                        </div>
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
 
@@ -147,11 +215,11 @@ if (!isset($this->session->userdata['logged_in'])) {
     </script>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="<?php echo base_url('/bootstrap/vendor/jquery/jquery.min.js');?>"></script>
-    <script src="<?php echo base_url('/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js');?>"></script>
+    <script src="<?php echo base_url('/bootstrap/vendor/jquery/jquery.min.js'); ?>"></script>
+    <script src="<?php echo base_url('/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="<?php echo base_url('/bootstrap/vendor/jquery-easing/jquery.easing.min.js');?>"></script>
+    <script src="<?php echo base_url('/bootstrap/vendor/jquery-easing/jquery.easing.min.js'); ?>"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="<?php echo base_url('/bootstrap/js/sb-admin-2.min.js') ?>"></script>

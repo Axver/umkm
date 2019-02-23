@@ -37,10 +37,14 @@ class Login extends CI_Controller {
         // var_dump($kabupaten);
         $geom=$this->login_model->geomKabupaten();
         $padang=$this->login_model->getPadang();
+        $jenisumkm=$this->login_model->jenis_umkm();
         
         $view_array=array(
                 'left_nav'=>$this->load->view('left_nav',array('kabupaten'=>$kabupaten),true),
-                'map'=>$this->load->view('maps',array('geom'=>$geom,'padang'=>$padang),true)
+                'map'=>$this->load->view('maps',array('geom'=>$geom,'padang'=>$padang),true),
+                'modal_umkm'=>$this->load->view('modal_umkm',array(),true),
+                'modal_insert'=>$this->load->view('modal_insert',array('jenis_umkm'=>$jenisumkm),true)
+                
                 
         );
         $this->load->view('dashboard',$view_array);
