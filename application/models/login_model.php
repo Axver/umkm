@@ -6,7 +6,7 @@ class Login_model extends CI_Model
 
     public function login($username, $passwordx)
     {
-        $data = $this->db->query("SELECT * FROM public.user WHERE username='$username' AND password='$passwordx'");
+        $data = $this->db->query("SELECT * FROM public.user_umkm WHERE username='$username' AND password='$passwordx'");
         $query_result = $data->result_array();
         return $query_result;
     }

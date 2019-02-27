@@ -22,7 +22,7 @@ if (!isset($this->session->userdata['logged_in'])) {
     <link href="<?php echo base_url('/bootstrap/vendor/fontawesome-free/css/all.min.css') ?>" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- Custom styles for this template-->
     <link href="<?php echo base_url('/bootstrap/css/sb-admin-2.min.css'); ?>" rel="stylesheet">
     <!-- Add icon library -->
@@ -41,6 +41,11 @@ if (!isset($this->session->userdata['logged_in'])) {
         margin: 0;
         padding: 0;
       }
+
+    table,th,tr,td{
+        border:1px solid black;
+    }
+ 
     </style>
 
 </head>
@@ -106,10 +111,12 @@ echo $modal_list_user;
                         <a href="#"><i class="fas fa-dollar-sign"></i></a>
                         <a href="#"><i class="fas fa-print"></i></a>
                         <a href="#"><i class="far fa-edit"></i></a>
-                        <a href="#"><i class="fas fa-plus-circle"></i></a>
+                        <a href="#"><i class="fas fa-plus-circle" data-toggle="modal" data-target="#modalinsert"></i></a>
                         <a href="#"><i class="fas fa-trash-alt"></i></a>
                         
                     </div>
+
+                  
                   
 
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -135,50 +142,7 @@ echo $modal_list_user;
                         <div style='background-color:#4E73DF;color:white;' class='panel panel-info'>
 
 
-                            <div class='panel-head'>
-                                <h3>Input Marker</h3>
-                            </div>
-                            <div style='margin-left:10px;' class='panel-body'>
-                                <form style='margin-left:10px;margin-right:20px;' action='<?php echo base_url('
-                                    index.php/insertumkm/inputumkm') ?>' method='POST'>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Nama UMKM</label>
-                                        <input name='nama_umkm' type="text" class="form-control" id="exampleInputEmail1"
-                                            aria-describedby="emailHelp" placeholder="Nama UMKM">
-                                        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Nama Pemilik</label>
-                                        <input name='nama_pemilik' type="text" class="form-control" id="exampleInputPassword1"
-                                            placeholder="Nama Pemilik">
-                                    </div>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <label class="input-group-text" for="inputGroupSelect01">Jenis UMKM</label>
-                                        </div>
-                                        <select name='jenis_umkm' class="custom-select" id="inputGroupSelect01">
-                                            <?php
-
-                                         foreach ($jenis_umkm as $ju) {
-                                           ?>
-                                            <option value="<?php echo $ju['id_jenis']?>">
-                                                <?php echo $ju['nama_jenis']; ?>
-                                            </option>
-
-
-                                            <?php }?>
-
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleFormControlFile1">Input Foto</label>
-                                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                                    </div>
-                                    <input type="text" name="lat" id="lat" placeholder='Latitude'>
-                                    <input type="text" name="lon" id="lon" placeholder='Longitude'>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </form>
-                            </div>
+                           
 
 
                         </div>
@@ -188,18 +152,7 @@ echo $modal_list_user;
 
                     <div class='col-sm-6'>
 
-                        <div class='panel panel-info'>
-
-
-                            <div class='panel-head'>
-                                <h3>Panel Head 1</h3>
-                            </div>
-                            <div class='panel-body'>
-                                Test
-                            </div>
-
-
-                        </div>
+                       
                     </div>
                 </div>
                 <!-- /.container-fluid -->

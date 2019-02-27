@@ -24,31 +24,17 @@ class Login extends CI_Controller {
         // echo count($data);
         $jumlah=count($data);
 
-        if($jumlah==1)
+        if($jumlah==1 AND $data[0]['role']=='admin')
         {
                 $session_data=array(
                  'username'=>$data[0]['username'],
-                 'id'=>$data[0]['id']
+                 'id'=>$data[0]['id_user'],
+                 'role'=>$data[0]['role']
                 );
                 $this->session->set_userdata('logged_in', $session_data);
 
         }
-        $kabupaten=$this->dashboard_model->getKabupaten();
-        // var_dump($kabupaten);
-        $geom=$this->login_model->geomKabupaten();
-        $padang=$this->login_model->getPadang();
-        $jenisumkm=$this->login_model->jenis_umkm();
-        
-        
-        $view_array=array(
-                'left_nav'=>$this->load->view('left_nav',array('jenis_umkm'=>$jenisumkm),true),
-                'map'=>$this->load->view('maps',array('geom'=>$geom,'padang'=>$padang),true),
-                'modal_umkm'=>$this->load->view('modal_umkm',array(),true),
-                'modal_insert'=>$this->load->view('modal_insert',array('jenis_umkm'=>$jenisumkm),true)
-                
-                
-        );
-        $this->load->view('dashboard',$view_array);
+        redirect('admin');
          
 
         

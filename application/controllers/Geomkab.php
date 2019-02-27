@@ -33,6 +33,9 @@ echo json_encode($hasil);
 
 	public function umkmgeom($id)
 	{
-		echo "Test";
+		$hasil=$this->dashboard_model->getGeomUmkm($id);
+		// echo "Test";
+		// var_dump($hasil);
+		echo json_encode($hasil);
 	}
 }

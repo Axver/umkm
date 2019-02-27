@@ -12,12 +12,12 @@
   <div style='height:100%;' id="mapid"></div>
 
     <script>
-    var test= <?php echo $geom; ?>;
+    
     var padang=<?php echo $padang; ?>;
   
-    console.log(test);
+    
 
-    console.log(test[0]);
+  
 
     var style={
                 weight: 2,
@@ -25,7 +25,7 @@
                 color: 'white',
                 dashArray: '3',
                 fillOpacity: 0.3,
-                fillColor: '#666666'
+                fillColor: 'blue'
     }
 
     var styleall={
@@ -37,7 +37,7 @@
                 fillColor: 'blue'
     }
 
-    var mymap = L.map('mapid').setView([-0.919432, 100.449392], 8);
+    var mymap = L.map('mapid').setView([-0.958867, 100.378054], 11);
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 18,
@@ -58,40 +58,54 @@ var drawnItems = new L.FeatureGroup();
 
 mymap.on('draw:created', function (e) {
 
-    var type = e.layerType,
+     var type = e.layerType,
         layer = e.layer;
 
-       if (type === 'marker') {
-           alert('Klik Dipeta Sekali Lagi');
-            mymap.on('click', function(e) {
-                var lat = e.latlng.lat;
-                var lng = e.latlng.lng;
-                alert ("Latitude : " + lat + "\nLongitude : " + lng);
-                lat=document.getElementById('lat').value=lat;
-                lon=document.getElementById('lon').value=lng;
-        }),
+    mymap.addLayer(layer);
 
-            layer.bindPopup(
-            'e.latlng.lat');
-        }
+    if (type === 'marker') {    
+        swal("Copy Lat Lng Popup Marker");
+        layer.bindPopup('LatLng: ' + layer.getLatLng()).openPopup();
+        
+    }
+    else
+    {
+        swal("Perintah hanya tersedia untuk fungsi marker");
+        mymap.removeLayer(layer);
 
-        drawnItems.addLayer(layer);
-
+    }
     // drawnItems.addLayer(layer);
 });
 
 
+function off()
+{
+  
+}
 
 
 
-
-   L.geoJSON(test,{
-     style:styleall
-   }).addTo(mymap);
+//    L.geoJSON(test,{
+//      style:styleall
+//    }).addTo(mymap);
    L.geoJSON(padang, {
             style: style
             
         }).addTo(mymap);
+
+
+
+        function pantau_koordinat()
+        {
+            alert("test");
+            mymap.on('mouseover', function(e) {
+                var lat = e.latlng.lat;
+                var lng = e.latlng.lng;
+                // alert ("Latitude : " + lat + "\nLongitude : " + lng);
+                latlive=document.getElementById('latlive').value=lat;
+                lonlive=document.getElementById('lonlive').value=lng;
+            });
+        }
 
 
    

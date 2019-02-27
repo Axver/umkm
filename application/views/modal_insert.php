@@ -2,44 +2,54 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Tambahkan UMKM</h5><br/>
+        <div class="alert alert-warning" role="alert">
+        <small>Pastikan data SIUP telah di Inputkan sebelumnya</small>
+</div>
+        
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form action='#' method='POST'>
+        <form action='<?php echo base_url('index.php/insertumkm/inputumkm') ?>' method='POST'>
           <div class="form-group">
             <label for="exampleInputEmail1">Nama UMKM</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nama UMKM">
+            <input name='nama_umkm' type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nama UMKM">
             <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1">Nama Pemilik</label>
-            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Nama Pemilik">
+          <label for="no_siup">NO SIUP</label>
+            <input class="form-control" type="text" name="no_siup" id="">
           </div>
+        
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <label class="input-group-text" for="inputGroupSelect01">Jenis UMKM</label>
             </div>
-            <select class="custom-select" id="inputGroupSelect01">
-            <?php 
-            
-            foreach ($jenis_umkm as $ju) {
-            ?>
-              <option value="3"><?php echo $ju['nama_jenis']; ?></option>
+            <select name='jenis_umkm'['nama_jenis']; ?></option>
 
             
-            <?php } ?>
+            <?php
+
+foreach ($jenis_umkm as $ju) {
+  ?>
+   <option value="<?php echo $ju['id_jenis']?>">
+       <?php echo $ju['nama_jenis']; ?>
+   </option>
+
+
+   <?php }?>
+
             
             </select>
           </div>
           <div class="form-group">
-            <label for="exampleFormControlFile1">Input Foto</label>
-            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+           
           </div>
           <input type="text" name="lat" id="" placeholder='Latitude'>
-          <input type="text" name="lat" id="" placeholder='Longitude'>
+          <input type="text" name="lon" id="" placeholder='Longitude'>
+          <br/><small>Latitude dan Longitude bisa didapatkan dengan menambahkan marker di peta</small><br/>
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
       </div>
