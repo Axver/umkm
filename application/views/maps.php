@@ -55,24 +55,48 @@ var drawnItems = new L.FeatureGroup();
      });
      mymap.addControl(drawControl);
 
-
+var kode=1;
 mymap.on('draw:created', function (e) {
 
      var type = e.layerType,
         layer = e.layer;
 
     mymap.addLayer(layer);
-
-    if (type === 'marker') {    
+    
+    if (type === 'marker' && kode==1) {    
         swal("Copy Lat Lng Popup Marker");
         layer.bindPopup('LatLng: ' + layer.getLatLng()).openPopup();
         
     }
-    else
+    else if(type === 'polygon' && kode==1)
     {
+        // console.log(layer.getLatLngs());   
+        var datagambar = layer.toGeoJSON();
+        convertedData = JSON.stringify(datagambar);
+        var length= convertedData.length;
+        var substr = convertedData.substr(80,length);
+        var hapus_belakang=substr.slice(0,-5);
+        // var replace=hapus_belakang.replace('],[','"')
+        var res = hapus_belakang.replace(/],/gi, '"');
+        var res1 = res.replace(/,/gi, ' ');
+        var res2 = res1.replace(/]/gi, ' ');
+        var res3= res2.replace(/\[/g,'');
+        res4=res3.replace(/"/g,',');
+        
+        console.log(res4);
+        data=layer.getLatLngs();
+        // var lokasi=document.getElementById('polygon');
+        // lokasi.innerHTML = data;
+        // lokasi.values=data;
+
+        var poli=document.getElementById('poli');
+        poli.value=res4;
+        mymap.removeLayer(layer);
+        swal('DATA DISIMPAN'+'\nSilahkan klik polygon');
+    }
+    else{
         swal("Perintah hanya tersedia untuk fungsi marker");
         mymap.removeLayer(layer);
-
     }
     // drawnItems.addLayer(layer);
 });

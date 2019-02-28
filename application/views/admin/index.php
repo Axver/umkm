@@ -1,6 +1,12 @@
 <?php
 if (!isset($this->session->userdata['logged_in'])) {
+    
+    $role=$this->session->userdata('role');
+    if($role=='admin')
+    {
     header("location: http://localhost/project1/");
+    }
+   
 }
 ?>
 
@@ -62,6 +68,7 @@ if (!isset($this->session->userdata['logged_in'])) {
 echo $modal_umkm;
 echo $modal_insert;
 echo $modal_list_user;
+echo $modal_maps;
 // var_dump($laptop);
  ?>
 

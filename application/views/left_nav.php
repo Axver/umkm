@@ -59,7 +59,7 @@
                                   for(i=0;i<sumdata;i++)
                                   {
                                     marker[i] = L.marker([arrdata[i]['latutude'], arrdata[i]['longitude']]).addTo(mymap);
-                                    marker[i].bindPopup("<b>"+"NO SIUP:"+arrdata[i]['nomor_siup']+"</b>"
+                                    marker[i].bindPopup("<h3>ID:"+arrdata[i]['id_umkm']+"</h3>"+"<b>"+"NO SIUP:"+arrdata[i]['nomor_siup']+"</b>"
                                     +"<br/>"
                                     +"<table><th>Detil</th><th>Info</th> <tr> <td>Nama Perusahaan</td><td>"+arrdata[i]['nama_perusahaan']+"</td></tr>"
                                     +"<tr><td>Alamat Perusahaan:</td>"
@@ -98,7 +98,7 @@
                                     +"</td>"
                                     +"</tr>"
                                     +"</table>"
-                                    +"<button class='btn btn-info'>Polygon</button>"
+                                    +"<button class='btn btn-info' data-toggle='modal' data-target='#modalmaps' values='"+arrdata[i]['alamat_perusahaan']+"'>Polygon</button>"
                                     +"<button class='btn btn-info'>Info</button>"
                                     +"<button class='btn btn-info'>Delete</button>"
                                     
@@ -125,7 +125,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Utilities:</h6>
             <a class="collapse-item" href="#" data-toggle="modal" data-target="#modalinsert">Input Data</a>
-            <a class="collapse-item" href="#" data-toggle="modal" data-target="#modalinsert">Input SIUP</a>
+            <a class="collapse-item" href="#" data-toggle="modal" data-target="#modalsiup">Input SIUP</a>
            
             
           </div>

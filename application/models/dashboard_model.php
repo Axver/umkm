@@ -33,6 +33,13 @@ class Dashboard_model extends CI_Model {
         $result_query=$geomumkm->result_array();
         return $result_query;
       }
+
+      public function jenisSiup()
+      {
+        $jenis=$this->db->query("SELECT * FROM public.jenis_up");
+        $result=$jenis->result_array();
+        return $result;
+      }
 }
 
 
