@@ -37,8 +37,8 @@ class Insertumkm extends CI_Controller
 
    public function inputsiup()
    {
-    // $form_data = $this->input->post();
-    var_dump($form_data);
+    $form_data = $this->input->post();
+    // var_dump($form_data);
     $no_siup=$form_data['nomor_siup'];
     $nama_perusahaan=$form_data['nama_perusahaan'];
     $alamat_perusahaan=$form_data['alamat_perusahaan'];

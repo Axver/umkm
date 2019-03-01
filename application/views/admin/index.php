@@ -89,13 +89,28 @@ echo $modal_maps;
                         <input style='width:50px;' type="text" name="" id="lonlive">
                         </div>
                         </div> -->
-
+                        <script>
+                     function showpolygon() {
+                        $.ajax({
+                            type: 'GET',
+                            url: 'http://localhost/project1/index.php/admin/getpoligeom',
+                            success: function (html) {
+                                  // alert(html);
+                                //   alert(html);
+                                //   L.geoJSON(html).addTo(mymap);
+                                arrdata=JSON.parse(html);
+                                console.log(arrdata);
+                                L.geoJSON(arrdata).addTo(mymap);
+                            }
+                        });
+                          }
+                       </script>
                     <div style='margin-left:20px;'>
                         <b>Maps</b><br/>
                         <a href="#"><i class="fas fa-map-marker-alt"></i></a>
                         <a href="#"><i class="fas fa-route"></i></a>
-                        <a href="#"><i class="fas fa-draw-polygon"></i></a>
-                     
+                        <a href="#" onclick='showpolygon()'><i class="fas fa-draw-polygon" ></i></a>
+                       
                         
                     </div>
 
@@ -122,6 +137,20 @@ echo $modal_maps;
                         <a href="#"><i class="fas fa-trash-alt"></i></a>
                         
                     </div>
+                    <div style='margin-left:20px;'>
+                    <b>Kecamatan</b><br/>
+                    <select class='form-controll' name="kecamatan" id="">
+                    <?php foreach ($nama_kecamatan as $nk) {
+                        ?>
+                    <option value="<?php echo $nk['kecamatan']; ?>"><?php echo $nk['kecamatan']; ?></option>
+                    <?php
+                    } ?>
+                    
+                    
+                    </select>
+                    </div>
+
+                    
 
                   
                   
@@ -210,6 +239,8 @@ echo $modal_maps;
             </div>
         </div>
     </div>
+
+   
 
     <script>
         function changeTitle() {

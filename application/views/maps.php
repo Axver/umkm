@@ -14,6 +14,8 @@
     <script>
     
     var padang=<?php echo $padang; ?>;
+    var kecamatan=<?php echo $kecamatan; ?>;
+    console.log(kecamatan);
   
     
 
@@ -30,11 +32,11 @@
 
     var styleall={
       weight: 2,
-                opacity: 0.1,
-                color: 'yellow',
+                opacity: 1,
+                color: 'white',
                 dashArray: '3',
-                fillOpacity: 0.5,
-                fillColor: 'blue'
+                fillOpacity: 0.1,
+                fillColor: 'red'
     }
 
     var mymap = L.map('mapid').setView([-0.958867, 100.378054], 11);
@@ -63,12 +65,12 @@ mymap.on('draw:created', function (e) {
 
     mymap.addLayer(layer);
     
-    if (type === 'marker' && kode==1) {    
+    if (type === 'marker') {    
         swal("Copy Lat Lng Popup Marker");
         layer.bindPopup('LatLng: ' + layer.getLatLng()).openPopup();
         
     }
-    else if(type === 'polygon' && kode==1)
+    else if(type === 'polygon')
     {
         // console.log(layer.getLatLngs());   
         var datagambar = layer.toGeoJSON();
@@ -114,6 +116,10 @@ function off()
 //    }).addTo(mymap);
    L.geoJSON(padang, {
             style: style
+            
+        }).addTo(mymap);
+        L.geoJSON(kecamatan, {
+            style: styleall
             
         }).addTo(mymap);
 
