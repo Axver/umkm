@@ -52,4 +52,10 @@ class Admin extends CI_Controller{
         echo json_encode($hasil);
 
     }
+
+    public function geomPerKec($id)
+    {
+      $data=$this->dashboard_model->geomPerKecamatan($id);
+      echo $data;
+    }
 }

@@ -139,16 +139,18 @@ echo $modal_maps;
                     </div>
                     <div style='margin-left:20px;'>
                     <b>Kecamatan</b><br/>
-                    <select class='form-controll' name="kecamatan" id="">
+                    <select onchange='tampil_test()' class='form-controll' name="kecamatan" id="kecamatan_id">
                     <?php foreach ($nama_kecamatan as $nk) {
                         ?>
-                    <option value="<?php echo $nk['kecamatan']; ?>"><?php echo $nk['kecamatan']; ?></option>
+                    <option  value="<?php echo $nk['id']; ?>"><?php echo $nk['kecamatan']; ?></option>
                     <?php
                     } ?>
                     
                     
                     </select>
                     </div>
+
+               
 
                     
 
@@ -240,7 +242,14 @@ echo $modal_maps;
         </div>
     </div>
 
-   
+        <script>
+                  
+                  function tampil_test()
+                  {
+                      id=document.getElementById('kecamatan_id').value;
+                      console.log(id);
+                  }
+                    </script>
 
     <script>
         function changeTitle() {
