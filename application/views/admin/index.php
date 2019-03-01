@@ -247,7 +247,18 @@ echo $modal_maps;
                   function tampil_test()
                   {
                       id=document.getElementById('kecamatan_id').value;
-                      console.log(id);
+                      $.ajax({
+                            type: 'GET',
+                            url: 'http://localhost/project1/index.php/admin/geomPerKec/'+id,
+                            success: function (html) {
+                                  // alert(html);
+                                //   alert(html);
+                                //   L.geoJSON(html).addTo(mymap);
+                                arrdata=JSON.parse(html);
+                                console.log(arrdata);
+                                L.geoJSON(arrdata).addTo(mymap);
+                            }
+                        });
                   }
                     </script>
 
