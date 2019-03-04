@@ -92,6 +92,31 @@ class Dashboard_model extends CI_Model {
         }
         return json_encode($hasil);
       }
+
+      public function umkm_kecamatan($id)
+      {
+        $sql = "SELECT id_umkm_geom, id_umkm, ST_AsGeoJSON(geom) as geom , ST_X(ST_Centroid((geom))) as x, ST_Y(ST_centroid((geom))) as y FROM public.umkm_geom 
+        WHERE ST_contains((SELECT geom FROM indonesia_kec WHERE id=$id),geom)";
+        $result = pg_query($sql);
+        $hasil = array(
+            'type' => 'FeatureCollection',
+            'features' => array(),
+        );
+        while ($isinya = pg_fetch_assoc($result)) {
+            $features = array(
+                'type' => 'Feature',
+                'geometry' => json_decode($isinya['geom']),
+                'properties' => array(
+                    'id_umkm' => $isinya['id_umkm'],
+                    'x'=> $isinya['x'],
+                    'y'=> $isinya['y'],
+                ),
+            );
+            array_push($hasil['features'], $features);
+        }
+        return json_encode($hasil);
+        // echo "Test";
+      }
 }
 
 

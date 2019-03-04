@@ -246,17 +246,68 @@ echo $modal_maps;
                   
                   function tampil_test()
                   {
+                      
                       id=document.getElementById('kecamatan_id').value;
                       $.ajax({
                             type: 'GET',
                             url: 'http://localhost/project1/index.php/admin/geomPerKec/'+id,
                             success: function (html) {
+                                var removeKecamatan = function() {
+                                mymap.eachLayer( function(layer) {
+
+                                if ( layer.myTag &&  layer.myTag === "layerKecamatan") {
+                                    mymap.removeLayer(layer)
+                                   }
+
+                                  });
+
+                                }
+
+                                removeKecamatan();
                                   // alert(html);
                                 //   alert(html);
                                 //   L.geoJSON(html).addTo(mymap);
                                 arrdata=JSON.parse(html);
-                                console.log(arrdata);
-                                L.geoJSON(arrdata).addTo(mymap);
+                                var myGeoJSON = L.geoJSON(arrdata, {
+                                onEachFeature: function (feature, layer) {
+                                layer.myTag = "layerKecamatan"
+                                }});
+
+                                myGeoJSON.addTo(mymap);
+                            }
+                        });
+
+                       $.ajax({
+                            type: 'GET',
+                            url: 'http://localhost/project1/index.php/admin/umkmKec/'+id,
+                            success: function (html1) {
+                                var removeUMKM = function() {
+                                mymap.eachLayer( function(layer) {
+
+                                if ( layer.myTag &&  layer.myTag === "myGeoJSON") {
+                                    mymap.removeLayer(layer)
+                                   }
+
+                                  });
+
+                                }
+
+                         removeUMKM();
+                                // var layer_umkec;
+                                // mymap.removeLayer(layer_umkec);
+                                // layer_umkec = e.layer;
+                                // mymap.addLayer(layer_umkec);
+                                arrdata=JSON.parse(html1);
+                                // console.log(arrdata);
+                                // console.log(arrdata.features[0].properties['x']);
+                                // console.log(arrdata.features[0].properties['y']);
+                                // layer_umkec=L.geoJSON(arrdata).addTo(mymap);
+                                var myGeoJSON = L.geoJSON(arrdata, {
+                                onEachFeature: function (feature, layer) {
+                                layer.myTag = "myGeoJSON"
+                                }});
+
+                                myGeoJSON.addTo(mymap);
                             }
                         });
                   }

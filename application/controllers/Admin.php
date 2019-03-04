@@ -58,4 +58,10 @@ class Admin extends CI_Controller{
       $data=$this->dashboard_model->geomPerKecamatan($id);
       echo $data;
     }
+
+    public function umkmKec($id)
+    {
+      $umkmkec=$this->dashboard_model->umkm_kecamatan($id);
+      echo $umkmkec;
+    }
 }
